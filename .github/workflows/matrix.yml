@@ -11,18 +11,20 @@ jobs:
   envsetup:
     runs-on: ubuntu-latest
     outputs:
-      envvar: ${{ steps.set_envvar.outputs.envvar }} # ここでoutputを設定
+      envvar: ${{ steps.set_envvar.outputs.envvar }} # outputsを設定
     steps:
       - name: Initialize ENVVAR
-        id: set_envvar # このステップにIDを設定
-        run: echo "::set-output name=envvar::hogehoge" # outputを設定
+        id: set_envvar
+        run: |
+          echo "envvar=hogehoge" >> $GITHUB_ENV # 環境ファイルに書き込む
+          echo "envvar=hogehoge" >> $GITHUB_OUTPUT # outputsに書き込む
       - name: Echo ENVVAR
-        run: echo ${{ steps.set_envvar.outputs.envvar }}
+        run: echo $ENVVAR
 
   build:
-    needs: envsetup # buildジョブがenvsetupジョブに依存していることを宣言
+    needs: envsetup # buildがenvsetupに依存
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Echo ENVVAR from envsetup
-        run: echo "${{ needs.envsetup.outputs.envvar }}" # envsetupジョブからoutputを参照
+        run: echo ${{ needs.envsetup.outputs.envvar }} # envsetupからのoutputsを使用
