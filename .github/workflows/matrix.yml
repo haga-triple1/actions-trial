@@ -21,6 +21,9 @@ jobs:
     steps:
       - name: Initialize ENVVAR	
         run: echo "ENVVAR=hogehoge" >> $GITHUB_ENV
+      - name: Echo ENVVAR
+        run: echo ${{ env.ENVVAR }}
+      
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
