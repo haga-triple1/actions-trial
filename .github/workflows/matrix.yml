@@ -10,8 +10,8 @@ on:
 jobs:
   envsetup:
     runs-on: ubuntu-latest
-    outputs:
-      envvar: ${{ steps.set_envvar.outputs.envvar }} # outputsを設定
+    # outputs:
+    #   envvar: ${{ steps.set_envvar.outputs.envvar }} # outputsを設定
     steps:
       - name: Initialize ENVVAR
         id: set_envvar
