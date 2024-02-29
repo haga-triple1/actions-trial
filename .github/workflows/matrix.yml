@@ -15,11 +15,8 @@ jobs:
     steps:
       - name: Initialize ENVVAR
         id: set_envvar
-        run: |
-          echo "envvar=hogehoge" >> $GITHUB_ENV # 環境ファイルに書き込む
-          echo "envvar=hogehoge" >> $GITHUB_OUTPUT # outputsに書き込む
-      - name: Echo ENVVAR
-        run: echo $ENVVAR
+        run: |  # outputsに書き込む
+          echo "envvar=hogehoge" >> $GITHUB_OUTPUT
 
   build:
     needs: envsetup # buildがenvsetupに依存
