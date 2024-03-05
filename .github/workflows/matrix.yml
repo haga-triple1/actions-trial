@@ -8,20 +8,24 @@ on:
   workflow_dispatch:
 
 jobs:
-  envsetup:
+  testes:
     runs-on: ubuntu-latest
-    # outputs:
-    #   envvar: ${{ steps.set_envvar.outputs.envvar }} # outputsを設定
+    strategy:
+      matrix:
+        include:
+          - a: a1
+            aa: aa1
+          - a: a2
+            aa: aa2
+          - a: a1
+            b: b1
+          - a: a2
+            b: b1
+          - a: a1
+            b: b2
     steps:
-      - name: Initialize ENVVAR
-        id: set_envvar
-        run: |  # outputsに書き込む
-          echo "envvar=hogehoge" >> $GITHUB_OUTPUT
+      - name: echo
+        run: echo ${{ matrix.a }} ${{ matrix.aa }} ${{ matrix.b }}
 
-  build:
-    needs: envsetup # buildがenvsetupに依存
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Echo ENVVAR from envsetup
-        run: echo ${{ needs.envsetup.outputs.envvar }} # envsetupからのoutputsを使用
+
+
