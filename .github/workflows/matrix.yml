@@ -12,17 +12,15 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
+        a: [a1, a2]
         include:
           - a: a1
             aa: aa1
+            b: [b1, b2]
           - a: a2
             aa: aa2
-          - a: a1
-            b: b1
-          - a: a2
-            b: b1
-          - a: a1
-            b: b2
+            b: [b1]
+          
     steps:
       - name: echo
         run: echo ${{ matrix.a }} ${{ matrix.aa }} ${{ matrix.b }}
