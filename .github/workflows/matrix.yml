@@ -16,10 +16,12 @@ jobs:
         include:
           - a: a1
             aa: aa1
-            b: [b1, b2]
+            b: b1
+          - a: a1
+            b: b2
           - a: a2
             aa: aa2
-            b: [b1]
+            b: b1
           
     steps:
       - name: echo
