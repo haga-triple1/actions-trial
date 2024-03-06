@@ -20,13 +20,17 @@ jobs:
             aa: aa1
           - a: a2
             aa: aa2
+          - b: b1
+            bb: bb1
+          - b: b2
+            bb: bb2
         exclude:
           - a: a2
             b: b2
           
     steps:
       - name: echo
-        run: echo ${{ matrix.a }} ${{ matrix.aa }} ${{ matrix.b }}
+        run: echo ${{ matrix.a }} ${{ matrix.aa }} ${{ matrix.b }} ${{ matrix.bb }} ${{ matrix.c }}
 
 
 
